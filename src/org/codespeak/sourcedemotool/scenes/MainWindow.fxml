@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="408.0" prefWidth="647.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.codespeak.sourcedemotool.scenes.MainWindowController">
+<AnchorPane id="AnchorPane" prefHeight="345.0" prefWidth="647.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.codespeak.sourcedemotool.scenes.MainWindowController">
    <children>
       <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="135.0" prefWidth="620.0">
          <children>
@@ -14,43 +14,43 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Label layoutX="115.0" layoutY="63.0" text="Label">
+            <Label fx:id="demoFileNameLabel" layoutX="115.0" layoutY="63.0" text="Label">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Button layoutX="14.0" layoutY="64.0" mnemonicParsing="false" text="Select File ..." />
+            <Button layoutX="14.0" layoutY="64.0" mnemonicParsing="false" onAction="#onSelectDemoFileButtoClick" text="Select File ..." />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="14.0" layoutY="149.0" prefHeight="231.0" prefWidth="620.0">
+      <AnchorPane layoutX="14.0" layoutY="149.0" prefHeight="281.0" prefWidth="620.0">
          <children>
-            <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="35.0" prefWidth="559.0" text="Demo Header">
+            <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="35.0" prefWidth="559.0" text="Demo File Details">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
             <Label layoutX="14.0" layoutY="68.0" text="Header" />
-            <Label layoutX="127.0" layoutY="68.0" text="Label" />
+            <Label fx:id="headerLabel" layoutX="127.0" layoutY="68.0" text="Label" />
             <Label layoutX="14.0" layoutY="95.0" text="Demo Protocol" />
-            <Label layoutX="127.0" layoutY="95.0" text="Label" />
+            <Label fx:id="demoProtocolLabel" layoutX="127.0" layoutY="95.0" text="Label" />
             <Label layoutX="14.0" layoutY="121.0" text="Network Protocol" />
-            <Label layoutX="127.0" layoutY="121.0" text="Label" />
+            <Label fx:id="networkProtocolLabel" layoutX="127.0" layoutY="121.0" text="Label" />
             <Label layoutX="14.0" layoutY="148.0" text="Server Name" />
-            <Label layoutX="127.0" layoutY="148.0" text="Label" />
+            <Label fx:id="serverNameLabel" layoutX="127.0" layoutY="148.0" text="Label" />
             <Label layoutX="14.0" layoutY="174.0" text="Client Name" />
-            <Label layoutX="127.0" layoutY="174.0" text="Label" />
+            <Label fx:id="clientNameLabel" layoutX="127.0" layoutY="174.0" text="Label" />
             <Label layoutX="14.0" layoutY="200.0" text="Map Name" />
-            <Label layoutX="127.0" layoutY="200.0" text="Label" />
+            <Label fx:id="mapNameLabel" layoutX="127.0" layoutY="200.0" text="Label" />
             <Label layoutX="337.0" layoutY="68.0" text="Game Directory" />
-            <Label layoutX="449.0" layoutY="68.0" text="Label" />
+            <Label fx:id="gameDirectoryLabel" layoutX="449.0" layoutY="68.0" text="Label" />
             <Label layoutX="337.0" layoutY="95.0" text="Playback Time" />
-            <Label layoutX="449.0" layoutY="95.0" text="Label" />
+            <Label fx:id="playbackTimeLabel" layoutX="449.0" layoutY="95.0" text="Label" />
             <Label layoutX="337.0" layoutY="121.0" text="Ticks" />
-            <Label layoutX="449.0" layoutY="121.0" text="Label" />
+            <Label fx:id="ticksLabel" layoutX="449.0" layoutY="121.0" text="Label" />
             <Label layoutX="337.0" layoutY="148.0" text="Frames" />
-            <Label layoutX="449.0" layoutY="148.0" text="Label" />
+            <Label fx:id="framesLabel" layoutX="449.0" layoutY="148.0" text="Label" />
             <Label layoutX="337.0" layoutY="174.0" text="Sign On Length" />
-            <Label layoutX="449.0" layoutY="174.0" text="Label" />
+            <Label fx:id="signOnLengthLabel" layoutX="449.0" layoutY="174.0" text="Label" />
          </children>
       </AnchorPane>
    </children>
