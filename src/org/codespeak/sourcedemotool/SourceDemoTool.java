@@ -1,5 +1,6 @@
 package org.codespeak.sourcedemotool;
 
+import java.io.File;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -26,6 +27,18 @@ public class SourceDemoTool extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        File demoFolder = new File("demos");
+        
+        if (!demoFolder.exists()) {
+            demoFolder.mkdirs();
+        }
+        
+        File outputFolder = new File("output");
+        
+        if (!outputFolder.exists()) {
+            outputFolder.mkdirs();
+        }
+        
         launch(args);
     }
     
