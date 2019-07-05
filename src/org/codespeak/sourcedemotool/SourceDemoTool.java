@@ -14,7 +14,7 @@ public class SourceDemoTool extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/org/codespeak/sourcedemotool/MainWindow.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/org/codespeak/sourcedemotool/scenes/MainWindow.fxml"));
         
         Scene scene = new Scene(root);
         
