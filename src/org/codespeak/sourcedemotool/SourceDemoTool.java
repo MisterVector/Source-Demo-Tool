@@ -27,13 +27,13 @@ public class SourceDemoTool extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        File demoFolder = new File("demos");
+        File demoFolder = new File(Configuration.DEMOS_FOLDER);
         
         if (!demoFolder.exists()) {
             demoFolder.mkdirs();
         }
         
-        File outputFolder = new File("output");
+        File outputFolder = new File(Configuration.OUTPUT_FOLDER);
         
         if (!outputFolder.exists()) {
             outputFolder.mkdirs();
