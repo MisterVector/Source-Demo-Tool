@@ -20,6 +20,7 @@ public class SourceDemoTool extends Application {
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
+        stage.setTitle(Configuration.PROGRAM_TITLE);
         stage.show();
     }
 
