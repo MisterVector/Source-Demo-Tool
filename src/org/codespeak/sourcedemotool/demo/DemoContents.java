@@ -3,6 +3,7 @@ package org.codespeak.sourcedemotool.demo;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 
 /**
  * A class representing the contents of a demo
@@ -136,30 +137,19 @@ public class DemoContents {
         return signOnLength;
     }
 
-    private static byte[] reverseBytes(byte[] bytes) {
-        byte[] newBytes = new byte[bytes.length];
-        
-        for (int i = 0; i < bytes.length; i++) {
-            byte temp = bytes[i];
-            newBytes[bytes.length - 1 - i] = temp;
-        }
-        
-        return newBytes;
-    }
-    
     private static int readInt(FileInputStream fis) throws IOException {
         byte[] bytes = new byte[4];
         fis.read(bytes);
-        bytes = reverseBytes(bytes);
         ByteBuffer bb = ByteBuffer.wrap(bytes);
+        bb.order(ByteOrder.LITTLE_ENDIAN);
         return bb.getInt();
     }
     
     private static float readFloat(FileInputStream fis) throws IOException {
         byte[] bytes = new byte[4];
         fis.read(bytes);
-        bytes = reverseBytes(bytes);
         ByteBuffer bb = ByteBuffer.wrap(bytes);
+        bb.order(ByteOrder.LITTLE_ENDIAN);
         return bb.getFloat();
     }
     
