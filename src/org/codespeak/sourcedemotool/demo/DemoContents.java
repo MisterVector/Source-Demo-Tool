@@ -1,5 +1,6 @@
 package org.codespeak.sourcedemotool.demo;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -161,11 +162,11 @@ public class DemoContents {
     
     /**
      * Gets the contents of a .dem file
-     * @param fis file input stream of a .dem file
+     * @param demoFile file object of a .dem file
      * @return contents of a .dem file
      */
-    public static DemoContents getDemoContents(FileInputStream fis) {
-        try {
+    public static DemoContents getDemoContents(File demoFile) {
+        try (FileInputStream fis = new FileInputStream(demoFile)) {
             String header = readString(fis, 8);
             int demoProtocol = readInt(fis);
             int networkProtocol = readInt(fis);

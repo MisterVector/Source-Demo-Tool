@@ -46,8 +46,7 @@ public class MainWindowController implements Initializable {
         
         if (chosenFile != null) {
             demoFileNameLabel.setText(chosenFile.getName());
-            FileInputStream demoFileStream = new FileInputStream(chosenFile);
-            DemoContents demoContents = DemoContents.getDemoContents(demoFileStream);
+            DemoContents demoContents = DemoContents.getDemoContents(chosenFile);
             
             headerLabel.setText(demoContents.getHeader());
             demoProtocolLabel.setText("" + demoContents.getDemoProtocol());
