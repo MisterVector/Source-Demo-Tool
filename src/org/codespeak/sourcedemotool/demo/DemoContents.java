@@ -159,6 +159,11 @@ public class DemoContents {
         return new String(bytes);
     }
     
+    /**
+     * Gets the contents of a .dem file
+     * @param fis file input stream of a .dem file
+     * @return contents of a .dem file
+     */
     public static DemoContents getDemoContents(FileInputStream fis) {
         try {
             String header = readString(fis, 8);

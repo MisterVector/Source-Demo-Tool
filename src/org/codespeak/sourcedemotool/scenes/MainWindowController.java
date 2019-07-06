@@ -14,6 +14,7 @@ import org.codespeak.sourcedemotool.Configuration;
 import org.codespeak.sourcedemotool.demo.DemoContents;
 
 /**
+ * Controller for the main window
  *
  * @author Vector
  */
@@ -34,10 +35,11 @@ public class MainWindowController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
     }    
     
-    @FXML public void onSelectDemoFileButtoClick(ActionEvent event) throws IOException {
+    @FXML
+    public void onSelectDemoFileButtoClick(ActionEvent event) throws IOException {
         FileChooser chooser = new FileChooser();
         chooser.setInitialDirectory(new File(Configuration.DEMOS_FOLDER));
         File chosenFile = chooser.showOpenDialog(null);

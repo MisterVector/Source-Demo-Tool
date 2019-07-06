@@ -1,6 +1,7 @@
 package org.codespeak.sourcedemotool.demo;
 
 /**
+ * An enum listing all command types
  *
  * @author Vector
  */
