@@ -25,7 +25,7 @@ public class DemoContents {
     private int signOnLength;
     
     private String stripString(String input) {
-        int idx = input.indexOf("\0");
+        int idx = input.indexOf("\\0");
         
         if (idx == -1) {
             return input;
