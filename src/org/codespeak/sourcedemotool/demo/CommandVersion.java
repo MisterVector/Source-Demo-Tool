@@ -7,10 +7,10 @@ package org.codespeak.sourcedemotool.demo;
  */
 public class CommandVersion {
    
-    private int commandId;
+    private byte commandId;
     private int protocolVersion;
     
-    public CommandVersion(int commandId, int protocolVersion) {
+    public CommandVersion(byte commandId, int protocolVersion) {
         this.commandId = commandId;
         this.protocolVersion = protocolVersion;
     }
@@ -19,7 +19,7 @@ public class CommandVersion {
      * Gets the ID of this command
      * @return ID of this command
      */
-    public int getCommandId() {
+    public byte getCommandId() {
         return commandId;
     }
     

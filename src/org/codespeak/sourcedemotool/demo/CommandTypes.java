@@ -7,16 +7,16 @@ package org.codespeak.sourcedemotool.demo;
  */
 public enum CommandTypes {
  
-    DEM_SIGNON(new CommandVersion(1, 7)),
-    DEM_PACKET(new CommandVersion(2, 7)),
-    DEM_SYNCTICK(new CommandVersion(3, 7)),
-    DEM_CONSOLECMD(new CommandVersion(4, 7)),
-    DEM_USERCMD(new CommandVersion(5, 7)),
-    DEM_DATATABLES(new CommandVersion(6, 7)),
-    DEM_STOP(new CommandVersion(7, 7)),
-    DEM_CUSTOMDATA(new CommandVersion(8, 36)),
-    DEM_STRINGTABLES(new CommandVersion(8, 14),
-                     new CommandVersion(9, 36));
+    DEM_SIGNON(new CommandVersion((byte) 1, 7)),
+    DEM_PACKET(new CommandVersion((byte) 2, 7)),
+    DEM_SYNCTICK(new CommandVersion((byte) 3, 7)),
+    DEM_CONSOLECMD(new CommandVersion((byte) 4, 7)),
+    DEM_USERCMD(new CommandVersion((byte) 5, 7)),
+    DEM_DATATABLES(new CommandVersion((byte) 6, 7)),
+    DEM_STOP(new CommandVersion((byte) 7, 7)),
+    DEM_CUSTOMDATA(new CommandVersion((byte) 8, 36)),
+    DEM_STRINGTABLES(new CommandVersion((byte) 8, 14),
+                     new CommandVersion((byte) 9, 36));
     
     private CommandVersion[] commandVersions;
     
@@ -38,7 +38,7 @@ public enum CommandTypes {
      * @param protocolVersion protocol version representing the command ID
      * @return command type for the specified command ID and protocol version
      */
-    public static CommandTypes getCommand(int commandId, int protocolVersion) {
+    public static CommandTypes getCommand(byte commandId, int protocolVersion) {
         CommandTypes foundType = null;
         int highestProtocolVersionFound = -1;
         
