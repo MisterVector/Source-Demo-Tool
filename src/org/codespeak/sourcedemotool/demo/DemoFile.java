@@ -87,8 +87,6 @@ public class DemoFile {
             DemoHeader header = new DemoHeader(headerName, demoProtocol, networkProtocol, serverName, clientName, mapName,gameDirectory,
                                     playbackTime, ticks, frames, signOnLength);
             
-            fis.skip(signOnLength);
-            
             List<CommandMessage> commandMessages = new LinkedList<CommandMessage>();
             boolean quitLoop = false;
 
