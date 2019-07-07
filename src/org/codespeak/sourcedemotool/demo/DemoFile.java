@@ -5,6 +5,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * A class representing the contents of a demo file
@@ -14,9 +16,11 @@ import java.nio.ByteOrder;
 public class DemoFile {
 
     private DemoHeader header;
+    private List<CommandMessage> commandMessages = new LinkedList<CommandMessage>();
 
-    public DemoFile(DemoHeader header) {
+    public DemoFile(DemoHeader header, List<CommandMessage> commandMessages) {
         this.header = header;
+        this.commandMessages = commandMessages;
     }
 
     /**
@@ -25,6 +29,14 @@ public class DemoFile {
      */
     public DemoHeader getHeader() {
         return header;
+    }
+    
+    /**
+     * Gets all command messages from this demo
+     * @return all command messages from this demo
+     */
+    public List<CommandMessage> getCommandMessages() {
+        return commandMessages;
     }
     
     private static byte readByte(FileInputStream fis) throws IOException {
@@ -75,7 +87,76 @@ public class DemoFile {
             DemoHeader header = new DemoHeader(headerName, demoProtocol, networkProtocol, serverName, clientName, mapName,gameDirectory,
                                     playbackTime, ticks, frames, signOnLength);
             
-            return new DemoFile(header);
+            fis.skip(signOnLength);
+            
+            List<CommandMessage> commandMessages = new LinkedList<CommandMessage>();
+            boolean quitLoop = false;
+
+            while (true) {
+                byte commandId = readByte(fis);
+                CommandTypes command = CommandTypes.getCommand(commandId, networkProtocol);
+                int tickCount = readInt(fis);
+                byte[] bytes = new byte[0];
+                
+                switch (command) {
+                    case DEM_SYNCTICK:
+                        
+                        break;
+                    case DEM_SIGNON:
+                    case DEM_PACKET:
+                    case DEM_CONSOLECMD:
+                    case DEM_CUSTOMDATA:
+                    case DEM_USERCMD:
+                    case DEM_DATATABLES:
+                    case DEM_STRINGTABLES:
+                        int startByteCount = 0;
+
+                        if (command == CommandTypes.DEM_PACKET || command == CommandTypes.DEM_SIGNON) {
+                            startByteCount = 84;
+                        } else if (command == CommandTypes.DEM_USERCMD) {
+                            startByteCount = 4;
+                        }
+
+                        byte[] startBytes = null;
+                        
+                        if (startByteCount > 0) {
+                            startBytes = new byte[startByteCount];
+                            fis.read(startBytes);
+                        }
+                        
+                        int commandMessageLength = readInt(fis);
+                        bytes = new byte[commandMessageLength];
+                        fis.read(bytes);
+
+                        if (startBytes != null) {
+                            byte[] newBytes = new byte[startBytes.length + bytes.length];
+                            
+                            System.arraycopy(startBytes, 0, newBytes, 0, startBytes.length);
+                            System.arraycopy(bytes, 0, newBytes, startBytes.length, bytes.length);
+                            bytes = newBytes;
+                        }
+                        
+                        break;
+                    case DEM_STOP:
+                        quitLoop = true;
+                        
+                        break;
+                    default:
+                        System.out.println("Found an invalid command ID. Breaking with current tick: " + tickCount);
+                        quitLoop = true;
+                        
+                        break;
+                }
+
+                CommandMessage commandMessage = new CommandMessage(command, tickCount, bytes);
+                commandMessages.add(commandMessage);
+
+                if (quitLoop) {
+                    break;
+                }
+            }
+            
+            return new DemoFile(header, commandMessages);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
