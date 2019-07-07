@@ -138,6 +138,10 @@ public class DemoContents {
         return signOnLength;
     }
 
+    private static byte readByte(FileInputStream fis) throws IOException {
+        return (byte) fis.read();
+    }
+    
     private static int readInt(FileInputStream fis) throws IOException {
         byte[] bytes = new byte[4];
         fis.read(bytes);
