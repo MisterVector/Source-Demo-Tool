@@ -33,6 +33,29 @@ public enum CommandTypes {
     }
     
     /**
+     * Gets the command ID depending on the network protocol
+     * @param networkProtocol network protocol that determines the command ID
+     * @return command ID as represented by the network protocol
+     */
+    public byte getId(int networkProtocol) {
+        int highestProtocolVersionFound = -1;
+        byte commandId = -1;            
+        
+        for (CommandVersion cv : commandVersions) {
+            int commandProtocol = cv.getProtocolVersion();
+            
+            if (commandProtocol <= networkProtocol) {
+                if (commandProtocol > highestProtocolVersionFound) {
+                    highestProtocolVersionFound = commandProtocol;
+                    commandId = cv.getCommandId();
+                }
+            }
+        }
+        
+        return commandId;
+    }
+    
+    /**
      * Gets a command type by the specified ID and protocol version
      * @param commandId command ID to search for
      * @param protocolVersion protocol version representing the command ID
