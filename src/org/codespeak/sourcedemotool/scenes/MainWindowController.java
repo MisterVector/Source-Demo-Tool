@@ -39,7 +39,7 @@ public class MainWindowController implements Initializable {
     }    
     
     @FXML
-    public void onSelectDemoFileButtoClick(ActionEvent event) throws IOException {
+    public void onSelectDemoFileButtonClick(ActionEvent event) throws IOException {
         FileChooser chooser = new FileChooser();
         chooser.setInitialDirectory(new File(Configuration.DEMOS_FOLDER));
         File chosenFile = chooser.showOpenDialog(null);

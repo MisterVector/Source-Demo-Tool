@@ -19,7 +19,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Button layoutX="14.0" layoutY="64.0" mnemonicParsing="false" onAction="#onSelectDemoFileButtoClick" text="Select File ..." />
+            <Button layoutX="14.0" layoutY="64.0" mnemonicParsing="false" onAction="#onSelectDemoFileButtonClick" text="Select File ..." />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="14.0" layoutY="149.0" prefHeight="281.0" prefWidth="620.0">
