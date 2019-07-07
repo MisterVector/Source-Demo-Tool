@@ -29,8 +29,8 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Label layoutX="14.0" layoutY="68.0" text="Header" />
-            <Label fx:id="headerLabel" layoutX="127.0" layoutY="68.0" text="Label" />
+            <Label layoutX="14.0" layoutY="68.0" text="Header Name" />
+            <Label fx:id="headerNameLabel" layoutX="127.0" layoutY="68.0" text="Label" />
             <Label layoutX="14.0" layoutY="95.0" text="Demo Protocol" />
             <Label fx:id="demoProtocolLabel" layoutX="127.0" layoutY="95.0" text="Label" />
             <Label layoutX="14.0" layoutY="121.0" text="Network Protocol" />

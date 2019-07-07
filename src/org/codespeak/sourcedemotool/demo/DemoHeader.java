@@ -1,19 +1,13 @@
 package org.codespeak.sourcedemotool.demo;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-
 /**
- * A class representing the contents of a demo
+ * A class representing the header portion of a demo file
  *
  * @author Vector
  */
-public class DemoContents {
+public class DemoHeader {
 
-    private String header;
+    private String headerName;
     private int demoProtocol;
     private int networkProtocol;
     private String serverName;
@@ -35,9 +29,9 @@ public class DemoContents {
         }
     }
     
-    public DemoContents(String header, int demoProtocol, int networkProtocol, String serverName, String clientName, String mapName, String gameDirectory,
+    public DemoHeader(String headerName, int demoProtocol, int networkProtocol, String serverName, String clientName, String mapName, String gameDirectory,
                         float playbackTime, int ticks, int frames, int signOnLength) {
-        this.header = header;
+        this.headerName = headerName;
         this.demoProtocol = demoProtocol;
         this.networkProtocol = networkProtocol;
         this.serverName = serverName;
@@ -51,11 +45,11 @@ public class DemoContents {
     }
     
     /**
-     * Gets the demo header
-     * @return demo header
+     * Gets the name of the header
+     * @return name of the header
      */
-    public String getHeader() {
-        return stripString(header);
+    public String getHeaderName() {
+        return stripString(headerName);
     }
 
     /**
@@ -136,60 +130,6 @@ public class DemoContents {
      */
     public int getSignonLength() {
         return signOnLength;
-    }
-
-    private static byte readByte(FileInputStream fis) throws IOException {
-        return (byte) fis.read();
-    }
-    
-    private static int readInt(FileInputStream fis) throws IOException {
-        byte[] bytes = new byte[4];
-        fis.read(bytes);
-        ByteBuffer bb = ByteBuffer.wrap(bytes);
-        bb.order(ByteOrder.LITTLE_ENDIAN);
-        return bb.getInt();
-    }
-    
-    private static float readFloat(FileInputStream fis) throws IOException {
-        byte[] bytes = new byte[4];
-        fis.read(bytes);
-        ByteBuffer bb = ByteBuffer.wrap(bytes);
-        bb.order(ByteOrder.LITTLE_ENDIAN);
-        return bb.getFloat();
-    }
-    
-    private static String readString(FileInputStream fis, int numBytes) throws IOException {
-        byte[] bytes = new byte[numBytes];
-        fis.read(bytes);
-        return new String(bytes);
-    }
-    
-    /**
-     * Gets the contents of a .dem file
-     * @param demoFile file object of a .dem file
-     * @return contents of a .dem file
-     */
-    public static DemoContents getDemoContents(File demoFile) {
-        try (FileInputStream fis = new FileInputStream(demoFile)) {
-            String header = readString(fis, 8);
-            int demoProtocol = readInt(fis);
-            int networkProtocol = readInt(fis);
-            String serverName = readString(fis, 260);
-            String clientName = readString(fis, 260);
-            String mapName = readString(fis, 260);
-            String gameDirectory = readString(fis, 260);
-            float playbackTime = readFloat(fis);
-            int ticks = readInt(fis);
-            int frames = readInt(fis);
-            int signOnLength = readInt(fis);
-            
-            return new DemoContents(header, demoProtocol, networkProtocol, serverName, clientName, mapName,gameDirectory,
-                                    playbackTime, ticks, frames, signOnLength);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        
-        return null;
     }
     
 }
