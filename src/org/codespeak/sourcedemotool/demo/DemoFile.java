@@ -15,14 +15,24 @@ import java.util.List;
  */
 public class DemoFile {
 
+    private String fileName;
     private DemoHeader header;
     private List<CommandMessage> commandMessages = new LinkedList<CommandMessage>();
 
-    public DemoFile(DemoHeader header, List<CommandMessage> commandMessages) {
+    public DemoFile(String fileName, DemoHeader header, List<CommandMessage> commandMessages) {
+        this.fileName = fileName;
         this.header = header;
         this.commandMessages = commandMessages;
     }
 
+    /**
+     * Gets the file name of this demo file
+     * @return file name of this demo file
+     */
+    public String getFileName() {
+        return fileName;
+    }
+    
     /**
      * Gets the header of this demo
      * @return header of this demo
@@ -154,7 +164,7 @@ public class DemoFile {
                 }
             }
             
-            return new DemoFile(header, commandMessages);
+            return new DemoFile(demoFile.getName(), header, commandMessages);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
