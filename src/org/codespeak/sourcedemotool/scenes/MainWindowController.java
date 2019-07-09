@@ -65,7 +65,7 @@ public class MainWindowController implements Initializable {
         if (chosenFile != null) {
             String demoFileName = chosenFile.getName();
             
-            if (!demoFileName.endsWith(".dem")) {
+            if (!demoFileName.toLowerCase().endsWith(".dem")) {
                 Alert alert = createAlert("This program can only open .dem files.");
                 alert.show();
                 
