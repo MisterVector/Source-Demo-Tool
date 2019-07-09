@@ -15,9 +15,9 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Label fx:id="demoFileNameLabel" layoutX="115.0" layoutY="63.0" text="Label">
+            <Label fx:id="demoFileNameLabel" layoutX="115.0" layoutY="63.0" text="&lt;No File Selected&gt;">
                <font>
-                  <Font name="System Bold" size="18.0" />
+                  <Font size="18.0" />
                </font>
             </Label>
             <Button layoutX="14.0" layoutY="64.0" mnemonicParsing="false" onAction="#onSelectDemoFileButtonClick" text="Select File ..." />
@@ -31,27 +31,27 @@
                </font>
             </Label>
             <Label layoutX="14.0" layoutY="68.0" text="Header Name" />
-            <Label fx:id="headerNameLabel" layoutX="127.0" layoutY="68.0" text="Label" />
+            <Label fx:id="headerNameLabel" layoutX="127.0" layoutY="68.0" text="&lt;No File Selected&gt;" />
             <Label layoutX="14.0" layoutY="95.0" text="Demo Protocol" />
-            <Label fx:id="demoProtocolLabel" layoutX="127.0" layoutY="95.0" text="Label" />
+            <Label fx:id="demoProtocolLabel" layoutX="127.0" layoutY="95.0" text="&lt;No File Selected&gt;" />
             <Label layoutX="14.0" layoutY="121.0" text="Network Protocol" />
-            <Label fx:id="networkProtocolLabel" layoutX="127.0" layoutY="121.0" text="Label" />
+            <Label fx:id="networkProtocolLabel" layoutX="127.0" layoutY="121.0" text="&lt;No File Selected&gt;" />
             <Label layoutX="14.0" layoutY="148.0" text="Server Name" />
-            <Label fx:id="serverNameLabel" layoutX="127.0" layoutY="148.0" text="Label" />
+            <Label fx:id="serverNameLabel" layoutX="127.0" layoutY="148.0" text="&lt;No File Selected&gt;" />
             <Label layoutX="14.0" layoutY="174.0" text="Client Name" />
-            <Label fx:id="clientNameLabel" layoutX="127.0" layoutY="174.0" text="Label" />
+            <Label fx:id="clientNameLabel" layoutX="127.0" layoutY="174.0" text="&lt;No File Selected&gt;" />
             <Label layoutX="14.0" layoutY="200.0" text="Map Name" />
-            <Label fx:id="mapNameLabel" layoutX="127.0" layoutY="200.0" text="Label" />
+            <Label fx:id="mapNameLabel" layoutX="127.0" layoutY="200.0" text="&lt;No File Selected&gt;" />
             <Label layoutX="337.0" layoutY="68.0" text="Game Directory" />
-            <Label fx:id="gameDirectoryLabel" layoutX="449.0" layoutY="68.0" text="Label" />
+            <Label fx:id="gameDirectoryLabel" layoutX="449.0" layoutY="68.0" text="&lt;No File Selected&gt;" />
             <Label layoutX="337.0" layoutY="95.0" text="Playback Time" />
-            <Label fx:id="playbackTimeLabel" layoutX="449.0" layoutY="95.0" text="Label" />
+            <Label fx:id="playbackTimeLabel" layoutX="449.0" layoutY="95.0" text="&lt;No File Selected&gt;" />
             <Label layoutX="337.0" layoutY="121.0" text="Ticks" />
-            <Label fx:id="ticksLabel" layoutX="449.0" layoutY="121.0" text="Label" />
+            <Label fx:id="ticksLabel" layoutX="449.0" layoutY="121.0" text="&lt;No File Selected&gt;" />
             <Label layoutX="337.0" layoutY="148.0" text="Frames" />
-            <Label fx:id="framesLabel" layoutX="449.0" layoutY="148.0" text="Label" />
+            <Label fx:id="framesLabel" layoutX="449.0" layoutY="148.0" text="&lt;No File Selected&gt;" />
             <Label layoutX="337.0" layoutY="174.0" text="Sign On Length" />
-            <Label fx:id="signOnLengthLabel" layoutX="449.0" layoutY="174.0" text="Label" />
+            <Label fx:id="signOnLengthLabel" layoutX="449.0" layoutY="174.0" text="&lt;No File Selected&gt;" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="14.0" layoutY="381.0" prefHeight="48.0" prefWidth="620.0">
