@@ -1,5 +1,8 @@
 package org.codespeak.sourcedemotool.demo;
 
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+
 /**
  * A class representing the header portion of a demo file
  *
@@ -130,6 +133,28 @@ public class DemoHeader {
      */
     public int getSignonLength() {
         return signOnLength;
+    }
+
+    /**
+     * Gets this header as a series of bytes in little endian order
+     * @return header as a series of bytes in little endian order
+     */
+    public byte[] getBytes() {
+        ByteBuffer bb = ByteBuffer.allocate(1072);
+        bb.order(ByteOrder.LITTLE_ENDIAN);
+        bb.put(headerName.getBytes());
+        bb.putInt(demoProtocol);
+        bb.putInt(networkProtocol);
+        bb.put(serverName.getBytes());
+        bb.put(clientName.getBytes());
+        bb.put(mapName.getBytes());
+        bb.put(gameDirectory.getBytes());
+        bb.putFloat(playbackTime);
+        bb.putInt(ticks);
+        bb.putInt(frames);
+        bb.putInt(signOnLength);
+        
+        return bb.array();
     }
     
 }
