@@ -63,8 +63,17 @@ public class MainWindowController implements Initializable {
         File chosenFile = chooser.showOpenDialog(null);
         
         if (chosenFile != null) {
+            String demoFileName = chosenFile.getName();
+            
+            if (!demoFileName.endsWith(".dem")) {
+                Alert alert = createAlert("This program can only open .dem files.");
+                alert.show();
+                
+                return;
+            }
+            
             demoFileNameLabel.setText(chosenFile.getName());
-            loadedDemoFile = DemoFile.getDemoFile(chosenFile);
+            loadedDemoFile = DemoFile.getDemoFile(chosenFile, demoFileName);
             DemoHeader header = loadedDemoFile.getHeader();
             
             headerNameLabel.setText(header.getHeaderName());

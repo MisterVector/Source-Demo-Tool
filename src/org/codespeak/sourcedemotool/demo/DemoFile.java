@@ -78,9 +78,10 @@ public class DemoFile {
     /**
      * Gets the contents of a demo file
      * @param demoFile file object of a demo file
+     * @param demoFileName file name of a demo file
      * @return contents of a demo file
      */
-    public static DemoFile getDemoFile(File demoFile) {
+    public static DemoFile getDemoFile(File demoFile, String demoFileName) {
         try (FileInputStream fis = new FileInputStream(demoFile)) {
             String headerName = readString(fis, 8);
             int demoProtocol = readInt(fis);
@@ -155,7 +156,7 @@ public class DemoFile {
                 }
             }
             
-            return new DemoFile(demoFile.getName(), header, commandMessages);
+            return new DemoFile(demoFileName, header, commandMessages);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
