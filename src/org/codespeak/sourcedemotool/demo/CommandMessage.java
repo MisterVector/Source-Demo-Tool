@@ -9,11 +9,13 @@ public class CommandMessage {
     
     private CommandTypes commandType;
     private int tickCount;
+    private byte[] startData;
     private byte[] data;
     
-    public CommandMessage(CommandTypes commandType, int tickCount, byte[] data) {
+    public CommandMessage(CommandTypes commandType, int tickCount, byte[] startData, byte[] data) {
         this.commandType = commandType;
         this.tickCount = tickCount;
+        this.startData = startData;
         this.data = data;
     }
 
@@ -31,6 +33,14 @@ public class CommandMessage {
      */
     public int getTickCount() {
         return tickCount;
+    }
+    
+    /**
+     * Gets the start data from this message
+     * @return start data from this message
+     */
+    public byte[] getStartData() {
+        return startData;
     }
     
     /**

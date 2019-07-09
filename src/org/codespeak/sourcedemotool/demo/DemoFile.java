@@ -104,8 +104,9 @@ public class DemoFile {
                 byte commandId = readByte(fis);
                 CommandTypes command = CommandTypes.getCommand(commandId, networkProtocol);
                 int tickCount = readInt(fis);
+                byte[] startData = new byte[0];
                 byte[] bytes = new byte[0];
-                
+
                 switch (command) {
                     case DEM_SYNCTICK:
                         
@@ -125,25 +126,15 @@ public class DemoFile {
                             startByteCount = 4;
                         }
 
-                        byte[] startBytes = null;
-                        
                         if (startByteCount > 0) {
-                            startBytes = new byte[startByteCount];
-                            fis.read(startBytes);
+                            startData = new byte[startByteCount];
+                            fis.read(startData);
                         }
                         
                         int commandMessageLength = readInt(fis);
                         bytes = new byte[commandMessageLength];
                         fis.read(bytes);
 
-                        if (startBytes != null) {
-                            byte[] newBytes = new byte[startBytes.length + bytes.length];
-                            
-                            System.arraycopy(startBytes, 0, newBytes, 0, startBytes.length);
-                            System.arraycopy(bytes, 0, newBytes, startBytes.length, bytes.length);
-                            bytes = newBytes;
-                        }
-                        
                         break;
                     case DEM_STOP:
                         quitLoop = true;
@@ -156,7 +147,7 @@ public class DemoFile {
                         break;
                 }
 
-                CommandMessage commandMessage = new CommandMessage(command, tickCount, bytes);
+                CommandMessage commandMessage = new CommandMessage(command, tickCount, startData, bytes);
                 commandMessages.add(commandMessage);
 
                 if (quitLoop) {
