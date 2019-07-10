@@ -73,7 +73,7 @@ public class MainWindowController implements Initializable {
                 return;
             }
             
-            demoFileNameLabel.setText(chosenFile.getName());
+            demoFileNameLabel.setText(demoFileName);
             loadedDemoFile = DemoFile.getDemoFile(chosenFile, demoFileName);
             DemoHeader header = loadedDemoFile.getHeader();
             maxTicks = header.getTicks();
