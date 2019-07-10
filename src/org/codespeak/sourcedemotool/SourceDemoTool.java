@@ -6,21 +6,25 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.codespeak.sourcedemotool.objects.MiscUtil;
+import org.codespeak.sourcedemotool.objects.StageController;
+import org.codespeak.sourcedemotool.scenes.SceneTypes;
 
 /**
  *
  * @author Vector
  */
 public class SourceDemoTool extends Application {
+
+    private static SourceDemoTool instance;
+    
+    public SourceDemoTool() {
+        instance = this;
+    }
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/org/codespeak/sourcedemotool/scenes/MainWindow.fxml"));
-        
-        Scene scene = new Scene(root);
-        
-        stage.setScene(scene);
-        stage.setTitle(Configuration.PROGRAM_TITLE);
+        stage = MiscUtil.getScene(stage, SceneTypes.MAIN_WINDOW).getStage();
         stage.show();
     }
 
@@ -41,6 +45,14 @@ public class SourceDemoTool extends Application {
         }
         
         launch(args);
+    }
+
+    /**
+     * Gets the instance of this class
+     * @return instance of this class
+     */
+    public static SourceDemoTool getInstance() {
+        return instance;
     }
     
 }
