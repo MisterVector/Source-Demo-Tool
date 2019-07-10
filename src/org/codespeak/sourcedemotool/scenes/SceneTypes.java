@@ -7,7 +7,7 @@ package org.codespeak.sourcedemotool.scenes;
  */
 public enum SceneTypes {
     
-    MAIN_WINDOW("MainWindow.fxml");
+    MAIN_SCENE("MainScene.fxml");
     
     private final String fxmlDocument;
     
@@ -16,16 +16,16 @@ public enum SceneTypes {
     }
     
     /**
-     * Gets the name of this window type
-     * @return name of this window type
+     * Gets the name of this scene type
+     * @return name of this scene type
      */
     public String getFxmlDocument() {
         return fxmlDocument;
     }
     
     /**
-     * Gets the path to this window
-     * @return path to this window
+     * Gets the path to this scene
+     * @return path to this scene
      */
     public String getPath() {
         return "/org/codespeak/sourcedemotool/scenes/" + fxmlDocument;

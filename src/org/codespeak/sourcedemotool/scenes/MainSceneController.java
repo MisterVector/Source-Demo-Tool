@@ -22,11 +22,11 @@ import org.codespeak.sourcedemotool.demo.DemoHeader;
 import org.codespeak.sourcedemotool.objects.MiscUtil;
 
 /**
- * Controller for the main window
+ * Controller for the main scene
  *
  * @author Vector
  */
-public class MainWindowController implements Initializable {
+public class MainSceneController implements Initializable {
   
     private DemoFile loadedDemoFile = null;
     private int maxTicks = 0;

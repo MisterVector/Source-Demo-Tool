@@ -24,7 +24,7 @@ public class SourceDemoTool extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        stage = MiscUtil.getScene(stage, SceneTypes.MAIN_WINDOW).getStage();
+        stage = MiscUtil.getScene(stage, SceneTypes.MAIN_SCENE).getStage();
         stage.show();
     }
 
