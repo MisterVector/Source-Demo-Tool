@@ -98,7 +98,7 @@ public class MainWindowController implements Initializable {
     }
     
     @FXML
-    public void rewriteDemoButtonClick(ActionEvent event) throws IOException {
+    public void writeOutputFileButtonClick(ActionEvent event) throws IOException {
         if (loadedDemoFile == null) {
             Alert alert = createAlert("No demo file has been loaded. Cannot write output file!");
             alert.show();
