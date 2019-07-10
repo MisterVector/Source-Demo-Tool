@@ -53,7 +53,7 @@ public class MainWindowController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        skipTickInput.setText("1");
     }    
     
     @FXML
