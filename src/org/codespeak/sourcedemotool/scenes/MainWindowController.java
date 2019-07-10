@@ -28,6 +28,7 @@ import org.codespeak.sourcedemotool.demo.DemoHeader;
 public class MainWindowController implements Initializable {
   
     private DemoFile loadedDemoFile = null;
+    private int maxTicks = 0;
     
     @FXML private Label demoFileNameLabel;
     @FXML private Label headerNameLabel;
@@ -75,6 +76,7 @@ public class MainWindowController implements Initializable {
             demoFileNameLabel.setText(chosenFile.getName());
             loadedDemoFile = DemoFile.getDemoFile(chosenFile, demoFileName);
             DemoHeader header = loadedDemoFile.getHeader();
+            maxTicks = header.getTicks();
             
             headerNameLabel.setText(header.getHeaderName());
             demoProtocolLabel.setText("" + header.getDemoProtocol());
@@ -104,6 +106,13 @@ public class MainWindowController implements Initializable {
         try {
             String value = skipTickInput.getText();
             skipTick = Integer.parseInt(value);
+            
+            if (skipTick < 1 || skipTick > maxTicks) {
+                Alert alert = createAlert("Invalid tick value. Must be in the range 1 to " + maxTicks + ".");
+                alert.show();
+                
+                return;
+            }
         } catch (NumberFormatException ex) {
             Alert alert = createAlert("The tick value specified is not a number.");
             alert.show();
