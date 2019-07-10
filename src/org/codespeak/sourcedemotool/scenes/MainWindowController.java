@@ -43,6 +43,7 @@ public class MainWindowController implements Initializable {
     @FXML private Label framesLabel;
     @FXML private Label signOnLengthLabel;
     @FXML private TextField skipTickInput;
+    @FXML private TextField outputFileNameInput;
     
     private Alert createAlert(String msg) {
         Alert alert = new Alert(AlertType.WARNING);
@@ -65,13 +66,17 @@ public class MainWindowController implements Initializable {
         
         if (chosenFile != null) {
             String demoFileName = chosenFile.getName();
+            String demoFileNameLower = demoFileName.toLowerCase();
             
-            if (!demoFileName.toLowerCase().endsWith(".dem")) {
+            if (!demoFileNameLower.endsWith(".dem")) {
                 Alert alert = createAlert("This program can only open .dem files.");
                 alert.show();
                 
                 return;
             }
+            
+            String demoFileNameWithoutExtension = demoFileName.substring(0, demoFileNameLower.indexOf(".dem"));
+            outputFileNameInput.setText(demoFileNameWithoutExtension);
             
             demoFileNameLabel.setText(demoFileName);
             loadedDemoFile = DemoFile.getDemoFile(chosenFile, demoFileName);
@@ -123,7 +128,7 @@ public class MainWindowController implements Initializable {
         DemoHeader header = loadedDemoFile.getHeader();
         List<CommandMessage> commandMessages = loadedDemoFile.getCommandMessages();
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        String fileName = loadedDemoFile.getFileName();
+        String outputFileName = outputFileNameInput.getText();
         int networkProtocol = header.getNetworkProtocol();
         
         bos.write(header.getBytes());
@@ -142,7 +147,7 @@ public class MainWindowController implements Initializable {
             bos.write(commandMessage.getBytes(cmdTickCount, networkProtocol));                
         }
         
-        FileOutputStream fos = new FileOutputStream(new File(Configuration.OUTPUT_FOLDER + "\\" + fileName));
+        FileOutputStream fos = new FileOutputStream(new File(Configuration.OUTPUT_FOLDER + "\\" + outputFileName + ".dem"));
         fos.write(bos.toByteArray());
         fos.close();
         
