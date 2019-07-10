@@ -95,7 +95,7 @@ public class MainWindowController implements Initializable {
     @FXML
     public void rewriteDemoButtonClick(ActionEvent event) throws IOException {
         if (loadedDemoFile == null) {
-            Alert alert = createAlert("No demo file has been loaded. Cannot rewrite!");
+            Alert alert = createAlert("No demo file has been loaded. Cannot write output file!");
             alert.show();
             
             return;
@@ -146,7 +146,7 @@ public class MainWindowController implements Initializable {
         fos.write(bos.toByteArray());
         fos.close();
         
-        Alert alert = createAlert(fileName + " has been re-written and can be found in the output folder.");
+        Alert alert = createAlert("Output file has been written and can be found in the output folder.");
         alert.show();
     }
     
