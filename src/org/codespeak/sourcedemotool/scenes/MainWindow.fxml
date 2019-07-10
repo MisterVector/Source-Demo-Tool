@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="526.0" prefWidth="647.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.codespeak.sourcedemotool.scenes.MainWindowController">
+<AnchorPane id="AnchorPane" prefHeight="556.0" prefWidth="647.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.codespeak.sourcedemotool.scenes.MainWindowController">
    <children>
       <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="135.0" prefWidth="620.0">
          <children>
@@ -54,11 +54,16 @@
             <Label fx:id="signOnLengthLabel" layoutX="449.0" layoutY="174.0" text="&lt;No File Selected&gt;" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="14.0" layoutY="381.0" prefHeight="48.0" prefWidth="620.0">
+      <AnchorPane layoutX="14.0" layoutY="381.0" prefHeight="154.0" prefWidth="620.0">
          <children>
-            <Label layoutX="16.0" layoutY="14.0" text="Re-write demo skipping the following tick" />
-            <TextField fx:id="skipTickInput" layoutX="246.0" layoutY="10.0" />
-            <Button layoutX="408.0" layoutY="10.0" mnemonicParsing="false" onAction="#rewriteDemoButtonClick" text="Rewrite Demo" />
+            <Label alignment="CENTER" layoutX="13.0" layoutY="14.0" prefHeight="35.0" prefWidth="595.0" text="Output File Details">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="75.0" text="Skip the following tick" />
+            <TextField fx:id="skipTickInput" layoutX="146.0" layoutY="71.0" />
+            <Button layoutX="13.0" layoutY="115.0" mnemonicParsing="false" onAction="#rewriteDemoButtonClick" prefHeight="25.0" prefWidth="595.0" text="Write Output File" />
          </children>
       </AnchorPane>
    </children>
