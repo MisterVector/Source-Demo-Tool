@@ -19,6 +19,7 @@ import org.codespeak.sourcedemotool.Configuration;
 import org.codespeak.sourcedemotool.demo.CommandMessage;
 import org.codespeak.sourcedemotool.demo.DemoFile;
 import org.codespeak.sourcedemotool.demo.DemoHeader;
+import org.codespeak.sourcedemotool.objects.MiscUtil;
 
 /**
  * Controller for the main window
@@ -45,14 +46,6 @@ public class MainWindowController implements Initializable {
     @FXML private TextField skipTickInput;
     @FXML private TextField outputFileNameInput;
     
-    private Alert createAlert(String msg) {
-        Alert alert = new Alert(AlertType.WARNING);
-        alert.setTitle(Configuration.PROGRAM_TITLE);
-        alert.setContentText(msg);
-
-        return alert;
-    }
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         skipTickInput.setText("1");
@@ -69,7 +62,7 @@ public class MainWindowController implements Initializable {
             String demoFileNameLower = demoFileName.toLowerCase();
             
             if (!demoFileNameLower.endsWith(".dem")) {
-                Alert alert = createAlert("This program can only open .dem files.");
+                Alert alert = MiscUtil.createAlert("This program can only open .dem files.");
                 alert.show();
                 
                 return;
@@ -100,7 +93,7 @@ public class MainWindowController implements Initializable {
     @FXML
     public void writeOutputFileButtonClick(ActionEvent event) throws IOException {
         if (loadedDemoFile == null) {
-            Alert alert = createAlert("No demo file has been loaded. Cannot write output file!");
+            Alert alert = MiscUtil.createAlert("No demo file has been loaded. Cannot write output file!");
             alert.show();
             
             return;
@@ -113,13 +106,13 @@ public class MainWindowController implements Initializable {
             skipTick = Integer.parseInt(value);
             
             if (skipTick < 1 || skipTick > maxTicks) {
-                Alert alert = createAlert("Invalid tick value. Must be in the range 1 to " + maxTicks + ".");
+                Alert alert = MiscUtil.createAlert("Invalid tick value. Must be in the range 1 to " + maxTicks + ".");
                 alert.show();
                 
                 return;
             }
         } catch (NumberFormatException ex) {
-            Alert alert = createAlert("The tick value specified is not a number.");
+            Alert alert = MiscUtil.createAlert("The tick value specified is not a number.");
             alert.show();
             
             return;
@@ -151,7 +144,7 @@ public class MainWindowController implements Initializable {
         fos.write(bos.toByteArray());
         fos.close();
         
-        Alert alert = createAlert("Output file has been written and can be found in the output folder.");
+        Alert alert = MiscUtil.createAlert("Output file has been written and can be found in the output folder.");
         alert.show();
     }
     
