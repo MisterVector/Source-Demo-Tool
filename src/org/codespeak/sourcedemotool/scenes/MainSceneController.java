@@ -154,7 +154,7 @@ public class MainSceneController implements Initializable {
             bos.write(commandMessage.getBytes(cmdTickCount, networkProtocol));                
         }
         
-        FileOutputStream fos = new FileOutputStream(new File(Configuration.OUTPUT_FOLDER + "\\" + outputFileName + ".dem"));
+        FileOutputStream fos = new FileOutputStream(new File(Configuration.OUTPUT_FOLDER + File.separator + outputFileName + ".dem"));
         fos.write(bos.toByteArray());
         fos.close();
         
