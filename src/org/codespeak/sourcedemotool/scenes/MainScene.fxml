@@ -2,13 +2,25 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="556.0" prefWidth="647.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.codespeak.sourcedemotool.scenes.MainSceneController">
+<AnchorPane id="AnchorPane" prefHeight="556.0" prefWidth="610.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.codespeak.sourcedemotool.scenes.MainSceneController">
    <children>
-      <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="135.0" prefWidth="620.0">
+      <MenuBar prefHeight="25.0" prefWidth="634.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#onMenuQuitItemClick" text="Quit" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <AnchorPane layoutX="14.0" layoutY="25.0" prefHeight="135.0" prefWidth="620.0">
          <children>
             <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="35.0" prefWidth="246.0" text="Select Demo File">
                <font>
@@ -23,7 +35,7 @@
             <Button layoutX="14.0" layoutY="64.0" mnemonicParsing="false" onAction="#onSelectDemoFileButtonClick" text="Select File ..." />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="14.0" layoutY="149.0" prefHeight="232.0" prefWidth="620.0">
+      <AnchorPane layoutX="14.0" layoutY="160.0" prefHeight="232.0" prefWidth="620.0">
          <children>
             <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="35.0" prefWidth="559.0" text="Demo File Details">
                <font>
@@ -54,7 +66,7 @@
             <Label fx:id="signOnLengthLabel" layoutX="449.0" layoutY="174.0" text="&lt;No File Selected&gt;" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="14.0" layoutY="381.0" prefHeight="154.0" prefWidth="620.0">
+      <AnchorPane layoutX="14.0" layoutY="392.0" prefHeight="154.0" prefWidth="620.0">
          <children>
             <Label alignment="CENTER" layoutX="13.0" layoutY="14.0" prefHeight="35.0" prefWidth="595.0" text="Output File Details">
                <font>
@@ -65,7 +77,7 @@
             <TextField fx:id="skipTickInput" layoutX="143.0" layoutY="71.0" prefHeight="25.0" prefWidth="93.0" />
             <Label layoutX="251.0" layoutY="75.0" text="Output File Name" />
             <TextField fx:id="outputFileNameInput" layoutX="363.0" layoutY="71.0" prefHeight="25.0" prefWidth="246.0" />
-            <Button layoutX="299.0" layoutY="115.0" mnemonicParsing="false" onAction="#openOutputFolderButtonClick" prefHeight="25.0" prefWidth="310.0" text="Open Output Folder" />
+            <Button layoutX="299.0" layoutY="115.0" mnemonicParsing="false" onAction="#openOutputFolderButtonClick" prefHeight="25.0" prefWidth="307.0" text="Open Output Folder" />
             <Button layoutX="13.0" layoutY="115.0" mnemonicParsing="false" onAction="#writeOutputFileButtonClick" prefHeight="25.0" prefWidth="270.0" text="Write Output File" />
          </children>
       </AnchorPane>

@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -51,6 +52,11 @@ public class MainSceneController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         skipTickInput.setText("1");
     }    
+    
+    @FXML
+    public void onMenuQuitItemClick(ActionEvent event) {
+        Platform.exit();
+    }
     
     @FXML
     public void onSelectDemoFileButtonClick(ActionEvent event) throws IOException {
