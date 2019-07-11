@@ -1,5 +1,6 @@
 package org.codespeak.sourcedemotool.scenes;
 
+import java.awt.Desktop;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -146,6 +147,11 @@ public class MainSceneController implements Initializable {
         
         Alert alert = MiscUtil.createAlert("Output file has been written and can be found in the output folder.");
         alert.show();
+    }
+   
+    @FXML public void openOutputFolderButtonClick(ActionEvent event) throws IOException {
+        Desktop desktop = Desktop.getDesktop();
+        desktop.open(new File(Configuration.OUTPUT_FOLDER));
     }
     
 }

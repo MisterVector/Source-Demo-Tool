@@ -65,7 +65,8 @@
             <TextField fx:id="skipTickInput" layoutX="143.0" layoutY="71.0" prefHeight="25.0" prefWidth="93.0" />
             <Label layoutX="251.0" layoutY="75.0" text="Output File Name" />
             <TextField fx:id="outputFileNameInput" layoutX="363.0" layoutY="71.0" prefHeight="25.0" prefWidth="246.0" />
-            <Button layoutX="13.0" layoutY="115.0" mnemonicParsing="false" onAction="#writeOutputFileButtonClick" prefHeight="25.0" prefWidth="595.0" text="Write Output File" />
+            <Button layoutX="299.0" layoutY="115.0" mnemonicParsing="false" onAction="#openOutputFolderButtonClick" prefHeight="25.0" prefWidth="310.0" text="Open Output Folder" />
+            <Button layoutX="13.0" layoutY="115.0" mnemonicParsing="false" onAction="#writeOutputFileButtonClick" prefHeight="25.0" prefWidth="270.0" text="Write Output File" />
          </children>
       </AnchorPane>
    </children>
