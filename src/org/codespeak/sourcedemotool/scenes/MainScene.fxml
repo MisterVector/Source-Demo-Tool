@@ -18,6 +18,11 @@
               <MenuItem mnemonicParsing="false" onAction="#onMenuQuitItemClick" text="Quit" />
             </items>
           </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#onMenuAboutItemClick" text="About" />
+              </items>
+            </Menu>
         </menus>
       </MenuBar>
       <AnchorPane layoutX="14.0" layoutY="25.0" prefHeight="135.0" prefWidth="620.0">

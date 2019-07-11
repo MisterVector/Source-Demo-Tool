@@ -7,7 +7,8 @@ package org.codespeak.sourcedemotool.scenes;
  */
 public enum SceneTypes {
     
-    MAIN_SCENE("MainScene.fxml");
+    MAIN_SCENE("MainScene.fxml"),
+    ABOUT_SCENE("AboutScene.fxml");
     
     private final String fxmlDocument;
     

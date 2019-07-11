@@ -17,6 +17,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import org.codespeak.sourcedemotool.Configuration;
 import org.codespeak.sourcedemotool.demo.CommandMessage;
 import org.codespeak.sourcedemotool.demo.DemoFile;
@@ -56,6 +57,12 @@ public class MainSceneController implements Initializable {
     @FXML
     public void onMenuQuitItemClick(ActionEvent event) {
         Platform.exit();
+    }
+    
+    @FXML
+    public void onMenuAboutItemClick(ActionEvent event) throws IOException {
+        Stage stage = MiscUtil.getScene(SceneTypes.ABOUT_SCENE, "About").getStage();
+        stage.show();
     }
     
     @FXML
