@@ -7,6 +7,8 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import org.codespeak.sourcedemotool.SourceDemoTool;
 
 /**
  * A class representing the contents of a demo file
@@ -147,7 +149,7 @@ public class DemoFile {
             
             return new DemoFile(header, commandMessages);
         } catch (IOException ex) {
-            ex.printStackTrace();
+            SourceDemoTool.getLogger().log(Level.WARNING, "Error when loading demo file!", ex);
         }
         
         return null;
