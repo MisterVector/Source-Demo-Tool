@@ -158,7 +158,7 @@ public class MainSceneController implements Initializable {
         fos.write(bos.toByteArray());
         fos.close();
         
-        Alert alert = MiscUtil.createAlert("Output file has been written and can be found in the output folder.");
+        Alert alert = MiscUtil.createAlert(AlertType.INFORMATION, "Output file has been written and can be found in the output folder.");
         alert.show();
     }
    

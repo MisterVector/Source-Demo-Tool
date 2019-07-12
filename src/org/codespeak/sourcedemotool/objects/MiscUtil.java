@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import org.codespeak.sourcedemotool.Configuration;
 import org.codespeak.sourcedemotool.SourceDemoTool;
@@ -17,8 +18,23 @@ import org.codespeak.sourcedemotool.scenes.SceneTypes;
  */
 public class MiscUtil {
 
+    /**
+     * Creates an alert with a message
+     * @param msg message of alert
+     * @return an alert with a given message
+     */
     public static Alert createAlert(String msg) {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
+        return createAlert(AlertType.WARNING, msg);
+    }
+
+    /**
+     * Creates an alert with a type and a message
+     * @param type type of alert
+     * @param msg message of alert
+     * @return an alert with a given type and message
+     */
+    public static Alert createAlert(AlertType type, String msg) {
+        Alert alert = new Alert(type);
         alert.setTitle(Configuration.PROGRAM_TITLE);
         alert.setContentText(msg);
 
