@@ -1,6 +1,12 @@
 package org.codespeak.sourcedemotool;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,7 +22,22 @@ import org.codespeak.sourcedemotool.scenes.SceneTypes;
  */
 public class SourceDemoTool extends Application {
 
+    private static Logger logger = Logger.getLogger("SourceDemoTool");
     private static SourceDemoTool instance;
+    
+    private static void setupLogger() throws Exception {
+        logger.setLevel(Level.WARNING);
+
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String outputFormat = sdf.format(date);
+        
+        FileHandler fh = new FileHandler("logs" + File.separator + "log-" + outputFormat + ".txt", true);
+        fh.setFormatter(new SimpleFormatter());
+        fh.setLevel(Level.WARNING);
+        
+        logger.addHandler(fh);
+    }
     
     public SourceDemoTool() {
         instance = this;
@@ -28,14 +49,17 @@ public class SourceDemoTool extends Application {
         stage.show();
     }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         File demoFolder = new File(Configuration.DEMOS_FOLDER);
         
         if (!demoFolder.exists()) {
             demoFolder.mkdirs();
+        }
+        
+        File logsFolder = new File(Configuration.LOGS_FOLDER);
+        
+        if (!logsFolder.exists()) {
+            logsFolder.mkdirs();
         }
         
         File outputFolder = new File(Configuration.OUTPUT_FOLDER);
@@ -44,6 +68,7 @@ public class SourceDemoTool extends Application {
             outputFolder.mkdirs();
         }
         
+        setupLogger();
         launch(args);
     }
 
@@ -53,6 +78,14 @@ public class SourceDemoTool extends Application {
      */
     public static SourceDemoTool getInstance() {
         return instance;
+    }
+
+    /**
+     * Gets the logger to the program
+     * @return logger to the program
+     */
+    public static Logger getLogger() {
+        return logger;
     }
     
 }

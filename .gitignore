@@ -30,4 +30,5 @@ target/
 # Other Stuff
 /extra/
 /demos/
+/logs/
 /output/
