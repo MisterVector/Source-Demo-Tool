@@ -11,13 +11,13 @@ import java.nio.ByteOrder;
 public class CommandMessage {
     
     private CommandTypes commandType;
-    private int tickCount;
+    private int gameTick;
     private byte[] startData;
     private byte[] data;
     
-    public CommandMessage(CommandTypes commandType, int tickCount, byte[] startData, byte[] data) {
+    public CommandMessage(CommandTypes commandType, int gameTick, byte[] startData, byte[] data) {
         this.commandType = commandType;
-        this.tickCount = tickCount;
+        this.gameTick = gameTick;
         this.startData = startData;
         this.data = data;
     }
@@ -31,11 +31,11 @@ public class CommandMessage {
     }
     
     /**
-     * Gets the tick count from this message
-     * @return tick count from this message
+     * Gets the game tick of this message
+     * @return game tick of this message
      */
-    public int getTickCount() {
-        return tickCount;
+    public int getGameTick() {
+        return gameTick;
     }
     
     /**
@@ -65,11 +65,11 @@ public class CommandMessage {
 
     /**
      * Gets this command message as a series of bytes in little endian order
-     * @param alteredTickCount alternative tick count value to use when returning bytes
+     * @param alternateGameTick alternate game tick to use when returning bytes
      * @param networkProtocol the network protocol to obtain the command ID from
      * @return an array of bytes in little endian order
      */
-    public byte[] getBytes(int alteredTickCount, int networkProtocol) {
+    public byte[] getBytes(int alternateGameTick, int networkProtocol) {
         int alloc = 5;
         
         if (data.length > 0) {
@@ -80,7 +80,7 @@ public class CommandMessage {
         ByteBuffer bb = ByteBuffer.allocate(alloc + startData.length + data.length);
         bb.order(ByteOrder.LITTLE_ENDIAN);
         bb.put(commandId);
-        bb.putInt(alteredTickCount > -1 ? alteredTickCount : tickCount);
+        bb.putInt(alternateGameTick > -1 ? alternateGameTick : gameTick);
         bb.put(startData);
         
         if (data.length > 0) {

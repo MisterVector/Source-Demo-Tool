@@ -95,7 +95,7 @@ public class DemoFile {
             while (true) {
                 byte commandId = readByte(fis);
                 CommandTypes command = CommandTypes.getCommand(commandId, networkProtocol);
-                int tickCount = readInt(fis);
+                int gameTick = readInt(fis);
                 byte[] startData = new byte[0];
                 byte[] bytes = new byte[0];
 
@@ -133,13 +133,13 @@ public class DemoFile {
                         
                         break;
                     default:
-                        System.out.println("Found an invalid command ID. Breaking with current tick: " + tickCount);
+                        System.out.println("Found an invalid command ID. Breaking with current tick: " + gameTick);
                         quitLoop = true;
                         
                         break;
                 }
 
-                CommandMessage commandMessage = new CommandMessage(command, tickCount, startData, bytes);
+                CommandMessage commandMessage = new CommandMessage(command, gameTick, startData, bytes);
                 commandMessages.add(commandMessage);
 
                 if (quitLoop) {

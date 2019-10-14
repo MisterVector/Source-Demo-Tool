@@ -113,13 +113,13 @@ public class MainSceneController implements Initializable {
             return;
         }
         
-        int skipTick = 0;
+        int skippedGameTick = 0;
         
         try {
             String value = skipTickInput.getText();
-            skipTick = Integer.parseInt(value);
+            skippedGameTick = Integer.parseInt(value);
             
-            if (skipTick < 1 || skipTick > maxTicks) {
+            if (skippedGameTick < 1 || skippedGameTick > maxTicks) {
                 Alert alert = MiscUtil.createAlert("Invalid tick value. Must be in the range 1 to " + maxTicks + ".");
                 alert.show();
                 
@@ -141,17 +141,17 @@ public class MainSceneController implements Initializable {
         bos.write(header.getBytes());
         
         for (CommandMessage commandMessage : commandMessages) {
-            int cmdTickCount = commandMessage.getTickCount();
+            int gameTick = commandMessage.getGameTick();
             
-            if (cmdTickCount == skipTick) {
+            if (gameTick == skippedGameTick) {
                 continue;
             }
             
-            if (cmdTickCount > skipTick) {
-                cmdTickCount--;
+            if (gameTick > skippedGameTick) {
+                gameTick--;
             }
             
-            bos.write(commandMessage.getBytes(cmdTickCount, networkProtocol));                
+            bos.write(commandMessage.getBytes(gameTick, networkProtocol));                
         }
         
         FileOutputStream fos = new FileOutputStream(new File(Configuration.OUTPUT_FOLDER + File.separator + outputFileName + ".dem"));
