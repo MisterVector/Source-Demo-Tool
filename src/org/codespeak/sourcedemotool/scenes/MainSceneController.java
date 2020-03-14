@@ -86,7 +86,7 @@ public class MainSceneController implements Initializable {
             outputFileNameInput.setText(demoFileNameWithoutExtension);
             
             demoFileNameLabel.setText(demoFileName);
-            loadedDemoFile = DemoFile.getDemoFile(chosenFile, demoFileName);
+            loadedDemoFile = DemoFile.getDemoFile(chosenFile);
             DemoHeader header = loadedDemoFile.getHeader();
             maxTicks = header.getTicks();
             
