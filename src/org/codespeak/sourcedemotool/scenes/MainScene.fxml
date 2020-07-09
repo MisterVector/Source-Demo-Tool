@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="556.0" prefWidth="610.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.codespeak.sourcedemotool.scenes.MainSceneController">
+<AnchorPane id="AnchorPane" prefHeight="312.0" prefWidth="634.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.codespeak.sourcedemotool.scenes.MainSceneController">
    <children>
       <MenuBar prefHeight="25.0" prefWidth="634.0">
         <menus>
@@ -40,38 +40,8 @@
             <Button layoutX="14.0" layoutY="64.0" mnemonicParsing="false" onAction="#onSelectDemoFileButtonClick" text="Select File ..." />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="14.0" layoutY="160.0" prefHeight="232.0" prefWidth="620.0">
-         <children>
-            <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="35.0" prefWidth="559.0" text="Demo File Details">
-               <font>
-                  <Font name="System Bold" size="24.0" />
-               </font>
-            </Label>
-            <Label layoutX="14.0" layoutY="68.0" text="Header Name" />
-            <Label fx:id="headerNameLabel" layoutX="127.0" layoutY="68.0" text="&lt;No File Selected&gt;" />
-            <Label layoutX="14.0" layoutY="95.0" text="Demo Protocol" />
-            <Label fx:id="demoProtocolLabel" layoutX="127.0" layoutY="95.0" text="&lt;No File Selected&gt;" />
-            <Label layoutX="14.0" layoutY="121.0" text="Network Protocol" />
-            <Label fx:id="networkProtocolLabel" layoutX="127.0" layoutY="121.0" text="&lt;No File Selected&gt;" />
-            <Label layoutX="14.0" layoutY="148.0" text="Server Name" />
-            <Label fx:id="serverNameLabel" layoutX="127.0" layoutY="148.0" text="&lt;No File Selected&gt;" />
-            <Label layoutX="14.0" layoutY="174.0" text="Client Name" />
-            <Label fx:id="clientNameLabel" layoutX="127.0" layoutY="174.0" text="&lt;No File Selected&gt;" />
-            <Label layoutX="14.0" layoutY="200.0" text="Map Name" />
-            <Label fx:id="mapNameLabel" layoutX="127.0" layoutY="200.0" text="&lt;No File Selected&gt;" />
-            <Label layoutX="337.0" layoutY="68.0" text="Game Directory" />
-            <Label fx:id="gameDirectoryLabel" layoutX="449.0" layoutY="68.0" text="&lt;No File Selected&gt;" />
-            <Label layoutX="337.0" layoutY="95.0" text="Playback Time" />
-            <Label fx:id="playbackTimeLabel" layoutX="449.0" layoutY="95.0" text="&lt;No File Selected&gt;" />
-            <Label layoutX="337.0" layoutY="121.0" text="Ticks" />
-            <Label fx:id="ticksLabel" layoutX="449.0" layoutY="121.0" text="&lt;No File Selected&gt;" />
-            <Label layoutX="337.0" layoutY="148.0" text="Frames" />
-            <Label fx:id="framesLabel" layoutX="449.0" layoutY="148.0" text="&lt;No File Selected&gt;" />
-            <Label layoutX="337.0" layoutY="174.0" text="Sign On Length" />
-            <Label fx:id="signOnLengthLabel" layoutX="449.0" layoutY="174.0" text="&lt;No File Selected&gt;" />
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="14.0" layoutY="392.0" prefHeight="154.0" prefWidth="620.0">
+      <Button layoutX="14.0" layoutY="160.0" mnemonicParsing="false" onAction="#onViewDemoFileButtonClick" prefHeight="25.0" prefWidth="607.0" text="View Demo Details" />
+      <AnchorPane layoutX="14.0" layoutY="192.0" prefHeight="154.0" prefWidth="620.0">
          <children>
             <Label alignment="CENTER" layoutX="13.0" layoutY="14.0" prefHeight="35.0" prefWidth="595.0" text="Output File Details">
                <font>

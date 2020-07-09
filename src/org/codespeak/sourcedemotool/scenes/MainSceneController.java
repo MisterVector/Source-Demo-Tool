@@ -23,6 +23,7 @@ import org.codespeak.sourcedemotool.demo.CommandMessage;
 import org.codespeak.sourcedemotool.demo.DemoFile;
 import org.codespeak.sourcedemotool.demo.DemoHeader;
 import org.codespeak.sourcedemotool.objects.MiscUtil;
+import org.codespeak.sourcedemotool.objects.StageController;
 
 /**
  * Controller for the main scene
@@ -32,20 +33,10 @@ import org.codespeak.sourcedemotool.objects.MiscUtil;
 public class MainSceneController implements Initializable {
   
     private DemoFile loadedDemoFile = null;
+    private String demoFileName = null;
     private int maxTicks = 0;
     
     @FXML private Label demoFileNameLabel;
-    @FXML private Label headerNameLabel;
-    @FXML private Label demoProtocolLabel;
-    @FXML private Label networkProtocolLabel;
-    @FXML private Label serverNameLabel;
-    @FXML private Label clientNameLabel;
-    @FXML private Label mapNameLabel;
-    @FXML private Label gameDirectoryLabel;
-    @FXML private Label playbackTimeLabel;
-    @FXML private Label ticksLabel;
-    @FXML private Label framesLabel;
-    @FXML private Label signOnLengthLabel;
     @FXML private TextField skipTickInput;
     @FXML private TextField outputFileNameInput;
     
@@ -72,7 +63,7 @@ public class MainSceneController implements Initializable {
         File chosenFile = chooser.showOpenDialog(null);
         
         if (chosenFile != null) {
-            String demoFileName = chosenFile.getName();
+            demoFileName = chosenFile.getName();
             String demoFileNameLower = demoFileName.toLowerCase();
             
             if (!demoFileNameLower.endsWith(".dem")) {
@@ -89,19 +80,24 @@ public class MainSceneController implements Initializable {
             loadedDemoFile = DemoFile.getDemoFile(chosenFile);
             DemoHeader header = loadedDemoFile.getHeader();
             maxTicks = header.getTicks();
-            
-            headerNameLabel.setText(header.getHeaderName());
-            demoProtocolLabel.setText("" + header.getDemoProtocol());
-            networkProtocolLabel.setText("" + header.getNetworkProtocol());
-            serverNameLabel.setText(header.getServerName());
-            clientNameLabel.setText(header.getClientName());
-            mapNameLabel.setText(header.getMapName());
-            gameDirectoryLabel.setText(header.getGameDirectory());
-            playbackTimeLabel.setText("" + header.getPlaybackTime());
-            ticksLabel.setText("" + header.getTicks());
-            framesLabel.setText("" + header.getFrames());
-            signOnLengthLabel.setText("" + header.getSignonLength());
         }
+    }
+
+    @FXML
+    public void onViewDemoFileButtonClick(ActionEvent event) throws IOException {
+        if (loadedDemoFile == null) {
+            Alert alert = MiscUtil.createAlert("Demo file has not been loaded. Load a demo before viewieng demo details.");
+            alert.show();
+            
+            return;
+        }
+        
+        StageController<DemoFileSceneController> stageController = MiscUtil.getScene(SceneTypes.DEMO_FILE_SCENE, "Details for " + demoFileName);
+        DemoFileSceneController controller = stageController.getController();
+        Stage stage = stageController.getStage();
+        
+        stage.show();
+        controller.showDemoFile(loadedDemoFile);
     }
     
     @FXML
