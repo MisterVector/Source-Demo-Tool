@@ -6,26 +6,31 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="169.0" prefWidth="430.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.codespeak.sourcedemotool.scenes.AboutSceneController">
+<AnchorPane id="AnchorPane" prefHeight="269.0" prefWidth="432.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.codespeak.sourcedemotool.scenes.AboutSceneController">
    <children>
-      <AnchorPane prefHeight="185.0" prefWidth="430.0">
-         <children>
-            <Label fx:id="programNameLabel" alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="35.0" prefWidth="386.0" text="\%p">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
-            <Label layoutX="14.0" layoutY="49.0" prefHeight="90.0" prefWidth="386.0" text="This is a program that allows you to rewrite .dem files, skipping over a tick that causes the demo file to crash your game while playing it back." textOverrun="CLIP" wrapText="true" />
-            <Label fx:id="websiteLabel" layoutX="14.0" layoutY="139.0" onMouseClicked="#onWebsiteLabelClick" text="http://www.codespeak.org" textFill="BLUE" underline="true">
-               <cursor>
-                  <Cursor fx:constant="OPEN_HAND" />
-               </cursor>
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <Button layoutX="254.0" layoutY="140.0" mnemonicParsing="false" onAction="#closeWindowButtonClick" prefHeight="25.0" prefWidth="146.0" text="Close Window" />
-         </children>
-      </AnchorPane>
+      <Label fx:id="programNameLabel" alignment="CENTER" layoutX="18.0" layoutY="14.0" prefHeight="35.0" prefWidth="386.0" text="\%p">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="178.0" layoutY="71.0" text="By Vector">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label alignment="TOP_LEFT" layoutX="23.0" layoutY="121.0" prefHeight="64.0" prefWidth="397.0" text="This is a program that allows you to rewrite .dem files, skipping over a tick that causes the demo file to crash your game while playing it back." textOverrun="CLIP" wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="websiteLabel" layoutX="22.0" layoutY="228.0" onMouseClicked="#onWebsiteLabelClick" text="www.codespeak.org" textFill="BLUE" underline="true">
+         <cursor>
+            <Cursor fx:constant="OPEN_HAND" />
+         </cursor>
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button layoutX="270.0" layoutY="229.0" mnemonicParsing="false" onAction="#closeWindowButtonClick" prefHeight="25.0" prefWidth="146.0" text="Close Window" />
    </children>
 </AnchorPane>
