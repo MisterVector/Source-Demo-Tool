@@ -65,7 +65,8 @@ public class MiscUtil {
     
     /**
      * Gets a scene from a specified SceneType
-     * @param existingStage an existing stage
+     * @param existingStage an existing stage representing the scene
+     * being acquired
      * @param sceneType the scene type of the scene to get
      * @return a stage controller object with the scene's stage and the controller
      * @throws IOException If an IO error occurs
@@ -76,14 +77,14 @@ public class MiscUtil {
     
     /**
      * Gets a scene from a specified SceneType
-     * @param existingStage an existing stage
+     * @param stage a stage representing the scene being acquired
      * @param sceneType the scene type of the scene to get
      * @param sceneTitle The title of the scene
      * @param newStage determines if the stage is a new stage
      * @return a stage controller object with the scene's stage and the controller
      * @throws IOException If an IO error occurs
      */
-    public static StageController getScene(Stage existingStage, SceneTypes sceneType, String sceneTitle, boolean newStage) throws IOException {
+    public static StageController getScene(Stage stage, SceneTypes sceneType, String sceneTitle, boolean newStage) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(SourceDemoTool.getInstance().getClass().getResource(sceneType.getPath()));
         
@@ -91,14 +92,14 @@ public class MiscUtil {
         Scene scene = new Scene(parent);
         
         if (newStage) {
-            existingStage.initModality(Modality.APPLICATION_MODAL);
+            stage.initModality(Modality.APPLICATION_MODAL);
         }
         
-        existingStage.setResizable(false);
-        existingStage.setScene(scene);
-        existingStage.setTitle(sceneTitle);
+        stage.setResizable(false);
+        stage.setScene(scene);
+        stage.setTitle(sceneTitle);
         
-        return new StageController(existingStage, loader.getController());
+        return new StageController(stage, loader.getController());
     }
     
 }
