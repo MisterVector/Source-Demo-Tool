@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.codespeak.sourcedemotool.Configuration;
 import org.codespeak.sourcedemotool.SourceDemoTool;
@@ -50,7 +51,7 @@ public class MiscUtil {
     public static StageController getScene(SceneTypes sceneType) throws IOException  {
         return getScene(sceneType, Configuration.PROGRAM_TITLE);
     }
-    
+
     /**
      * Gets a scene from a specified SceneType
      * @param sceneType the scene type of the scene to get
@@ -59,9 +60,9 @@ public class MiscUtil {
      * @throws IOException If an IO error occurs
      */
     public static StageController getScene(SceneTypes sceneType, String sceneTitle) throws IOException  {
-        return getScene(new Stage(), sceneType, sceneTitle);
+        return getScene(new Stage(), sceneType, sceneTitle, true);
     }
-
+    
     /**
      * Gets a scene from a specified SceneType
      * @param existingStage an existing stage
@@ -70,7 +71,7 @@ public class MiscUtil {
      * @throws IOException If an IO error occurs
      */
     public static StageController getScene(Stage existingStage, SceneTypes sceneType) throws IOException {
-        return getScene(existingStage, sceneType, Configuration.PROGRAM_TITLE);
+        return getScene(existingStage, sceneType, Configuration.PROGRAM_TITLE, false);
     }
     
     /**
@@ -78,17 +79,23 @@ public class MiscUtil {
      * @param existingStage an existing stage
      * @param sceneType the scene type of the scene to get
      * @param sceneTitle The title of the scene
+     * @param newStage determines if the stage is a new stage
      * @return a stage controller object with the scene's stage and the controller
      * @throws IOException If an IO error occurs
      */
-    public static StageController getScene(Stage existingStage, SceneTypes sceneType, String sceneTitle) throws IOException {
+    public static StageController getScene(Stage existingStage, SceneTypes sceneType, String sceneTitle, boolean newStage) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(SourceDemoTool.getInstance().getClass().getResource(sceneType.getPath()));
+        
         Parent parent = (Parent) loader.load();
         Scene scene = new Scene(parent);
         
-        existingStage.setScene(scene);
+        if (newStage) {
+            existingStage.initModality(Modality.APPLICATION_MODAL);
+        }
+        
         existingStage.setResizable(false);
+        existingStage.setScene(scene);
         existingStage.setTitle(sceneTitle);
         
         return new StageController(existingStage, loader.getController());
