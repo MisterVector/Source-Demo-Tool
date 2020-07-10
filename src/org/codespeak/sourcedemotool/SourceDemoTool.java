@@ -23,6 +23,7 @@ import org.codespeak.sourcedemotool.scenes.SceneTypes;
 public class SourceDemoTool extends Application {
 
     private static Logger logger = Logger.getLogger("SourceDemoTool");
+    private static Settings settings = null;
     private static SourceDemoTool instance;
     
     private static void setupLogger() throws Exception {
@@ -49,6 +50,11 @@ public class SourceDemoTool extends Application {
         stage.show();
     }
 
+    @Override
+    public void stop() {
+        Configuration.writeSettingsToFile();
+    }
+    
     public static void main(String[] args) throws Exception {
         File demoFolder = new File(Configuration.DEMOS_FOLDER);
         
@@ -68,6 +74,8 @@ public class SourceDemoTool extends Application {
             outputFolder.mkdirs();
         }
         
+        settings = Configuration.getSettings();
+        
         setupLogger();
         launch(args);
     }
@@ -80,6 +88,14 @@ public class SourceDemoTool extends Application {
         return instance;
     }
 
+    /**
+     * Gets the settings object
+     * @return settings object
+     */
+    public static Settings getSettings() {
+        return settings;
+    }
+    
     /**
      * Gets the logger to the program
      * @return logger to the program
