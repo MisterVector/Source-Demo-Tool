@@ -3,9 +3,11 @@ package org.codespeak.sourcedemotool.scenes;
 import java.awt.Desktop;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.channels.FileChannel;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
@@ -14,6 +16,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
@@ -34,6 +37,7 @@ import org.codespeak.sourcedemotool.objects.StageController;
  */
 public class MainSceneController implements Initializable {
   
+    private File chosenFile = null;
     private DemoFile loadedDemoFile = null;
     private String demoFileName = null;
     private int maxTicks = 0;
@@ -75,7 +79,7 @@ public class MainSceneController implements Initializable {
             chooser.setInitialDirectory(fileDemosFolder);
         }
 
-        File chosenFile = chooser.showOpenDialog(null);
+        chosenFile = chooser.showOpenDialog(null);
         
         if (chosenFile != null) {
             demoFileName = chosenFile.getName();
@@ -124,6 +128,13 @@ public class MainSceneController implements Initializable {
             return;
         }
         
+        if (chosenFile == null) {
+            Alert alert = MiscUtil.createAlert(AlertType.INFORMATION, "Please select demo file again before overwriting.");
+            alert.show();
+
+            return;
+        }
+        
         int skippedGameTick = 0;
         
         try {
@@ -142,6 +153,34 @@ public class MainSceneController implements Initializable {
             
             return;
         }
+        
+        boolean backupBeforeOverwritingDemo = Configuration.getSettings().getValue(SettingFields.BACKUP_BEFORE_OVERWRITING_DEMO);
+        
+        if (backupBeforeOverwritingDemo) {
+            File backupFile = new File(Configuration.BACKUPS_FOLDER + File.separator + demoFileName);
+
+            if (backupFile.exists()) {
+                Alert alert = MiscUtil.createAlert("A backup file already exists. Would you like to overwrite it?");
+                alert.getButtonTypes().setAll(new ButtonType[] {ButtonType.YES, ButtonType.NO});
+
+                ButtonType result = alert.showAndWait().get();
+
+                if (result == ButtonType.NO) {
+                    return;
+                }
+
+                backupFile.delete();
+            }
+            
+            FileChannel chosenFileIn = new FileInputStream(chosenFile).getChannel();
+            FileChannel backupFileOut = new FileOutputStream(backupFile).getChannel();
+            
+            backupFileOut.transferFrom(chosenFileIn, 0, Long.MAX_VALUE);
+            
+            chosenFileIn.close();
+            backupFileOut.close();
+        }
+
         
         DemoHeader header = loadedDemoFile.getHeader();
         List<CommandMessage> commandMessages = loadedDemoFile.getCommandMessages();

@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
@@ -25,6 +26,7 @@ public class SettingsSceneController implements Initializable {
     private Settings settings = null;
 
     @FXML private Label demosFolderLabel;
+    @FXML private CheckBox backupBeforeOverwritingDemoCheck;
     
     /**
      * Initializes the controller class.
@@ -33,6 +35,7 @@ public class SettingsSceneController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         settings = Configuration.getSettings();
         demosFolderLabel.setText(settings.getValue(SettingFields.DEMOS_FOLDER));
+        backupBeforeOverwritingDemoCheck.setSelected(settings.getValue(SettingFields.BACKUP_BEFORE_OVERWRITING_DEMO));
     }    
 
     @FXML
@@ -54,6 +57,7 @@ public class SettingsSceneController implements Initializable {
     @FXML
     public void onOkButtonClick(ActionEvent event) {
 	settings.setValue(SettingFields.DEMOS_FOLDER, demosFolderLabel.getText());
+        settings.setValue(SettingFields.BACKUP_BEFORE_OVERWRITING_DEMO, backupBeforeOverwritingDemoCheck.isSelected());
         
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();

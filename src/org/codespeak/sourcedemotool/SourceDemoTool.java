@@ -56,6 +56,12 @@ public class SourceDemoTool extends Application {
     }
     
     public static void main(String[] args) throws Exception {
+        File backupsFolder = new File(Configuration.BACKUPS_FOLDER);
+        
+        if (!backupsFolder.exists()) {
+            backupsFolder.mkdir();
+        }
+        
         File logsFolder = new File(Configuration.LOGS_FOLDER);
         
         if (!logsFolder.exists()) {

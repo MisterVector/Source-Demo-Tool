@@ -14,7 +14,8 @@ import org.json.JSONObject;
 public class Settings {
    
     public enum SettingFields {
-        DEMOS_FOLDER("demos_folder", String.class, "");
+        DEMOS_FOLDER("demos_folder", String.class, ""),
+        BACKUP_BEFORE_OVERWRITING_DEMO("backup_before_overwriting_demo", Boolean.class, true);
 
         private final String key;
         private final Class fieldClass;
@@ -105,8 +106,11 @@ public class Settings {
                         if (tempValue instanceof String) {
                             value = tempValue;
                         }
+                    } else if (fieldClass == Boolean.class) {
+                        if (tempValue instanceof Boolean) {
+                            value = tempValue;
+                        }
                     }
-
                 } catch (JSONException ex) {
                     
                 }
