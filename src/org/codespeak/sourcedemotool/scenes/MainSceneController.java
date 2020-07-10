@@ -19,6 +19,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.codespeak.sourcedemotool.Configuration;
+import org.codespeak.sourcedemotool.Settings;
+import org.codespeak.sourcedemotool.Settings.SettingFields;
 import org.codespeak.sourcedemotool.demo.CommandMessage;
 import org.codespeak.sourcedemotool.demo.DemoFile;
 import org.codespeak.sourcedemotool.demo.DemoHeader;
@@ -65,7 +67,14 @@ public class MainSceneController implements Initializable {
     @FXML
     public void onSelectDemoFileButtonClick(ActionEvent event) throws IOException {
         FileChooser chooser = new FileChooser();
-        chooser.setInitialDirectory(new File(Configuration.DEMOS_FOLDER));
+        Settings settings = Configuration.getSettings();
+        String demosFolder = settings.getValue(SettingFields.DEMOS_FOLDER);
+        File fileDemosFolder = new File(demosFolder);
+
+        if (fileDemosFolder.exists()) {
+            chooser.setInitialDirectory(fileDemosFolder);
+        }
+
         File chosenFile = chooser.showOpenDialog(null);
         
         if (chosenFile != null) {

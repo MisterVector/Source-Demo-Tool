@@ -20,6 +20,15 @@ import org.codespeak.sourcedemotool.scenes.SceneTypes;
 public class MiscUtil {
 
     /**
+     * Checks if the specified string is null or empty
+     * @param str the string to check
+     * @return if the specified string is null or empty
+     */
+    public static boolean isNullOrEmpty(String str) {
+        return (str == null || str.isEmpty());
+    }
+    
+    /**
      * Creates an alert with a message
      * @param msg message of alert
      * @return an alert with a given message

@@ -14,7 +14,7 @@ import org.json.JSONObject;
 public class Settings {
    
     public enum SettingFields {
-        EMPTY("", Object.class, "");
+        DEMOS_FOLDER("demos_folder", String.class, "");
 
         private final String key;
         private final Class fieldClass;
@@ -99,7 +99,14 @@ public class Settings {
 
             if (json.has(key)) {
                 try {
-                    value = json.get(key);
+                    Object tempValue = json.get(key);
+                    
+                    if (fieldClass == String.class) {
+                        if (tempValue instanceof String) {
+                            value = tempValue;
+                        }
+                    }
+
                 } catch (JSONException ex) {
                     
                 }

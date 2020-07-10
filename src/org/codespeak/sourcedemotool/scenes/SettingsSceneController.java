@@ -23,6 +23,8 @@ import org.codespeak.sourcedemotool.objects.MiscUtil;
 public class SettingsSceneController implements Initializable {
 
     private Settings settings = null;
+
+    @FXML private Label demosFolderLabel;
     
     /**
      * Initializes the controller class.
@@ -30,10 +32,29 @@ public class SettingsSceneController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         settings = Configuration.getSettings();
+        demosFolderLabel.setText(settings.getValue(SettingFields.DEMOS_FOLDER));
     }    
 
     @FXML
+    public void onSelectFolderButtonClick(ActionEvent event) {
+        DirectoryChooser chooser = new DirectoryChooser();
+        String demosFolderText = demosFolderLabel.getText();
+        
+        if (!MiscUtil.isNullOrEmpty(demosFolderText)) {
+            chooser.setInitialDirectory(new File(demosFolderText));
+        }
+
+        File chosenFolder = chooser.showDialog(null);
+        
+        if (chosenFolder != null) {
+            demosFolderLabel.setText(chosenFolder.toString());
+        }
+    }
+
+    @FXML
     public void onOkButtonClick(ActionEvent event) {
+	settings.setValue(SettingFields.DEMOS_FOLDER, demosFolderLabel.getText());
+        
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
     }
