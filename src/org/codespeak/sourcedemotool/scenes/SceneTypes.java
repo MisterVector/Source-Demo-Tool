@@ -9,7 +9,8 @@ public enum SceneTypes {
     
     MAIN_SCENE("MainScene.fxml"),
     ABOUT_SCENE("AboutScene.fxml"),
-    DEMO_FILE_SCENE("DemoFileScene.fxml");
+    DEMO_FILE_SCENE("DemoFileScene.fxml"),
+    SETTINGS_SCENE("SettingsScene.fxml");
     
     private final String fxmlDocument;
     

@@ -46,6 +46,12 @@ public class MainSceneController implements Initializable {
     }    
     
     @FXML
+    public void onMenuSettingsItemClick(ActionEvent event) throws IOException {
+        Stage stage = MiscUtil.getScene(SceneTypes.SETTINGS_SCENE, "Settings for " + Configuration.PROGRAM_NAME).getStage();
+        stage.show();
+    }
+    
+    @FXML
     public void onMenuQuitItemClick(ActionEvent event) {
         Platform.exit();
     }
