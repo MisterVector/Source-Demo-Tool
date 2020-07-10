@@ -185,7 +185,6 @@ public class MainSceneController implements Initializable {
         DemoHeader header = loadedDemoFile.getHeader();
         List<CommandMessage> commandMessages = loadedDemoFile.getCommandMessages();
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        String outputFileName = outputFileNameInput.getText();
         int networkProtocol = header.getNetworkProtocol();
         
         bos.write(header.getBytes());
@@ -204,11 +203,11 @@ public class MainSceneController implements Initializable {
             bos.write(commandMessage.getBytes(gameTick, networkProtocol));                
         }
         
-        FileOutputStream fos = new FileOutputStream(new File(Configuration.OUTPUT_FOLDER + File.separator + outputFileName + ".dem"));
+        FileOutputStream fos = new FileOutputStream(chosenFile);
         fos.write(bos.toByteArray());
         fos.close();
         
-        Alert alert = MiscUtil.createAlert(AlertType.INFORMATION, "Output file has been written and can be found in the output folder.");
+        Alert alert = MiscUtil.createAlert(AlertType.INFORMATION, "Demo has been rewritten.");
         alert.show();
     }
    
