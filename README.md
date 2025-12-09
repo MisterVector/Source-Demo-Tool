@@ -1,4 +1,4 @@
-* Source Demo Tool
+# Source Demo Tool
 
 This is a program that is used to fix demos for source games, specifically Team Fortress 2.
 
